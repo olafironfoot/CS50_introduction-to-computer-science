@@ -1,0 +1,24 @@
+Step1)
+export API_KEY=AIzaSyAgl2EVYfBQHTyg-YNCj_M2sIL9RHjbekU
+export API_KEY=AIzaSyC90qnw-WLTNgMdkTelPxEOrcKaxJGd78
+
+
+Step2) 
+cd pset8/mashup
+flask run
+
+Step3)
+cd pset8/mashup
+phpliteadmin ./mashup.db
+
+
+
+-----use this---
+
+export API_KEY=AIzaSyAQpSc2GuVZeIu7EtXyseQXsds420CgO98
+
+cd pset8/mashup
+flask run
+
+cd pset8/mashup
+phpliteadmin ./mashup.db

@@ -1,0 +1,97 @@
+{
+	"type": "pane",
+	"name": "pane2",
+	"nodes": [
+		{
+			"type": "tab",
+			"name": "tab4",
+			"path": "/pset7/finance/application.py",
+			"className": [
+				"tab4"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1492713396054
+				},
+				"filter": true,
+				"title": "application.py",
+				"tooltip": "/pset7/finance/application.py",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": true
+		},
+		{
+			"type": "tab",
+			"name": "tab7",
+			"path": "/pset7/finance/helpers.py",
+			"className": [
+				"tab7"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1491882580000
+				},
+				"filter": true,
+				"title": "helpers.py",
+				"tooltip": "/pset7/finance/helpers.py",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab0",
+			"path": "/pset7/finance/requirements.txt",
+			"className": [
+				"tab0"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1492269894576
+				},
+				"filter": true,
+				"title": "requirements.txt",
+				"tooltip": "/pset7/finance/requirements.txt",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab9",
+			"path": "/pset7/finance/templates/register.html",
+			"className": [
+				"tab9"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1492707096758
+				},
+				"filter": true,
+				"title": "register.html",
+				"tooltip": "/pset7/finance/templates/register.html",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		}
+	],
+	"skin": "editor_tab",
+	"skinset": "default",
+	"meta": {
+		"accessList": [
+			"tab9",
+			"tab0",
+			"tab4",
+			"tab7"
+		]
+	},
+	"focus": "tab14"
+}

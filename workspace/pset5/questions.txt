@@ -1,0 +1,20 @@
+0.  TODO (It means: a lung disease caused by inhaling very fine ash and sand dust. It is also a made up word.)
+1.  TODO (It returns resource usage measures for (Self, Children and Thread))
+2.  TODO (There are 16 members in a variable of type struct rusage)
+3.  TODO (So that it doesn't take up resources/heap and points directly to values instead of generating and storing 16 longs)
+4.  TODO (The for loop calls on fgetc(gets next character from file- casted as int) to read each char from the file that is opened (using fopen). 
+It then checks to allow alphabetical, aprostophes, and appends them into a word, ignoring strings that are too long to be words, or words that have numbers in them. 
+Each word adds to the "words" counter. It is checked using the check() function while getrusage() function which returns the resource usage statistics for the calling process. 
+Finally it printf misspelled words. This is all put into a loop that excecutes untill the EOF is reached
+5.  TODO (fscanf checks only the format of the word. While fgetc is able to distinguish-and accept- apostrophe on top of alphabets. We will not be able to do spell checks with fscanf)
+6.  TODO (So that the words/string becomes imutable, while allowing the pointer to still change.)
+
+0. What is pneumonoultramicroscopicsilicovolcanoconiosis?
+1. According to its man page, what does getrusage do?
+2. Per that same man page, how many members are in a variable of type struct rusage?
+3. Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+4. Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+5. Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+6. Why do you think we declared the parameters for check and load as const (which means "constant")?
+
+

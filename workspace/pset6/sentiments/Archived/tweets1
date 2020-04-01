@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+
+# TODO
+import nltk
+import helpers
+from tweetanalyzer import Analyzer
+import sys
+import os
+from termcolor import colored
+
+
+#ZYMAYLA'S HINTS
+
+#ensure proper usage
+    #argv
+def main():
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./smile @username")
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+#get tweets
+    screen_name = sys.argv[1]
+    ##get_user_timeline (in helpers.py)
+    if helpers.get_user_timeline(sys.argv[1]) is False:
+        #Check if successful
+        #if private account or does not exist(unsuccessful)
+        #error message if unsuccessful(sys.exit)
+        sys.exit("account either private or does not exist")
+        
+    #tokenize the tweet (like we did in analyzer.py for "smile")
+    #tokenizers are part of natural language toolkit        
+    tokenizer = nltk.tokenize.TweetTokenizer()
+    tokens = tokenizer.tokenize(helpers.get_user_timeline(sys.argv[1]))
+
+    #use a TweetTokenizer to split into a list of words
+
+    
+    #analyze tweets
+    #initialize Analyzer
+        #analyzer = Analyzer(positives, negatives)
+    #instantiate Analyzer, iterate over every token scoring them pos,neg,neutral (this will indicate if the tweet is posistive/negative/neutral)
+    positives = []
+    negatives = [] 
+    
+    #load positive and negative words
+    #store those words in positive and negative word files into list into self.positive, self.negative
+    filePositives = open(positives, "r")
+    fileNegatives = open(negatives, "r")
+    
+    for line in filePositives:
+        #don't include comment, using str.startswith
+        if not(line.startswith(';') or line.startswith('\n')):
+            #ommit leading & trailing whitespace using str.strip (https://docs.python.org/3/library/stdtypes.html)
+            positives.append(line.rstrip("\n"))
+    filePositives.close()
+    #print("{} <-- self.positives[1]".format(self.positives[2]))
+    
+    for x in fileNegatives:
+        #don't include comment, using str.startswith
+        if not(x.startswith(';') or x.startswith('\n')):
+            #ommit leading & trailing whitespace using str.strip (https://docs.python.org/3/library/stdtypes.html)
+            negatives.append(x.rstrip("\n"))
+    fileNegatives.close()
+    print("{} <-- self.negatives[0]".format(negatives[0]))
+    
+    
+    for i in tokens:
+        #turn tokens into lower case
+        wordToCheck = str.lower(i)
+        print("{}".format(wordToCheck))
+
+        if(wordToCheck in positives):
+            score =+ 1
+        elif(wordToCheck in negatives):
+            score =- 1
+        
+    #score = analyzer.TweetAnalyzer(tokens)
+    #tweet = analyzer.TweetAnalyzer
+    if score > 0.0:
+        #print score
+        print(colored("{}".format(score), "green", end=''))
+        #print tweet
+       # print("{}".format(tweet))
+        
+    elif score < 0.0:
+        print(colored("{}".format(score), "red", end=''))
+        #print tweet
+        print("{}".format(tweet))
+        
+    else:
+        print(colored("{}".format(score), "yellow", end=''))
+        #print tweet
+        #print("{}".format(tweet))
+
+if __name__ == "__main__":
+    main()
+    
+    
+
+
+#(inorder to get proper usage, see "smile")
+
+
+
+
+
+#End of ZYMAYLA'S HINTS
+
+#----------------
+
+#start of "smile"
+    # import os
+    # import sys
+    
+    # from analyzer import Analyzer
+    # from termcolor import colored
+    
+    # def main():
+    
+    #     # ensure proper usage
+    #     if len(sys.argv) != 2:
+    #         sys.exit("Usage: ./smile word")
+    
+    #     # absolute paths to lists
+    #     positives = os.path.join(sys.path[0], "positive-words.txt")
+    #     negatives = os.path.join(sys.path[0], "negative-words.txt")
+    
+    #     # instantiate analyzer
+    #     analyzer = Analyzer(positives, negatives)
+    
+    #     # analyze word
+    #     score = analyzer.analyze(sys.argv[1])
+    #     if score > 0.0:
+    #         print(colored(":)", "green"))
+    #     elif score < 0.0:
+    #         print(colored(":(", "red"))
+    #     else:
+    #         print(colored(":|", "yellow"))
+    
+    # if __name__ == "__main__":
+    #     main()
+#end of "smile"

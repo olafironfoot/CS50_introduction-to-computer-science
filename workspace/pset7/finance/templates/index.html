@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <!--<form action="{{ url_for('buy') }}" method="post">-->
+<!--{% if request.method == "GET" %}-->
+<!--    <header>-->
+<!--        <div class="alert alert-info" role="alert">-->
+<!--            Bought!-->
+<!--        </div>-->
+<!--    </header>-->
+<!--{% endif %}-->
+
+    <h2>RESULTS:</h2>
+
+    <ul>
+        <li><h2> {{ name }}</h2></li>
+    </ul>
+    
+<table class="table table-striped">
+
+        <thead>
+            <th>Share Symbol</th>
+            <th>Shares Name</th>
+            <th>Number of Shares</th>
+            <th>Current price</th>
+            <th>Total value</th>
+        </thead>
+        
+         {% for share in sharesOwned %}
+            <tr>
+                <td>{{ share.symbol }}</td>
+                <td>{{ share.name }}</td>
+                <td>{{ share.quanties }}</td>
+                <td>{{ share.priceNow|round(2, 'floor') }}</td>
+                <td>{{ share.totalValueNow|round(2, 'floor') }}</td>
+            </tr>
+            
+        {% endfor %}
+        
+        <!--{% for i in priceNow%}-->
+        <!--    <td>-->
+        <!--        <tr>{{ priceNow }}</td>-->
+        <!--    </td>-->
+        <!--{% endfor %}-->
+        
+        <tr>
+            <td colspan="4">CASH</td> 
+            <td>{{ totalCash }}</td>
+            
+
+        </tr>
+
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <td> 
+                        <b>{{ countWithCash |round(2,'floor') }}</b>
+                    </td>
+                </td> 
+            </tr>
+        </tfoot>        
+        
+        
+    </table>
+
+
+        
+{% endblock %}
+    <!--<form action="{{ url_for('buy') }}" method="post">-->
+    <!--    {% for stock in stocks%}-->
+    <!--        <p>{{stock.name}}</p>-->
+    <!--    {%endfor%}-->
+        
+        <!--<fieldset>-->
+        <!--    <div class="form-group">-->
+        <!--        <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text"/>-->
+        <!--    </div>-->
+            
+        <!--    <div class="form-group">-->
+        <!--        <input class="form-control" name="shares" placeholder="Shares" type="number"/>-->
+        <!--    </div>-->
+            
+            
+        <!--    <div class="form-group">-->
+        <!--        <button class="btn btn-default" type="submit">Buy</button>-->
+        <!--    </div>-->
+        <!--</fieldset>-->
+    <!--</form>-->
+

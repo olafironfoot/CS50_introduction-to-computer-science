@@ -1,0 +1,188 @@
+{
+	"type": "pane",
+	"name": "pane2",
+	"nodes": [
+		{
+			"type": "tab",
+			"name": "tab4",
+			"path": "/pset8/mashup/application.py",
+			"className": [
+				"tab4",
+				"focus"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1499364259900
+				},
+				"filter": true,
+				"title": "application.py",
+				"tooltip": "/pset8/mashup/application.py",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": true
+		},
+		{
+			"type": "tab",
+			"name": "tab6",
+			"path": "/pset8/mashup/helpers.py",
+			"className": [
+				"tab6"
+			],
+			"document": {
+				"filter": true,
+				"title": "helpers.py",
+				"tooltip": "/pset8/mashup/helpers.py",
+				"ace": {
+					"folds": [],
+					"scrolltop": 0,
+					"scrollleft": 0,
+					"selection": {
+						"start": {
+							"row": 6,
+							"column": 25
+						},
+						"end": {
+							"row": 6,
+							"column": 25
+						},
+						"isBackwards": false
+					},
+					"options": {
+						"guessTabSize": true,
+						"useWrapMode": false,
+						"wrapToView": true
+					},
+					"firstLineState": 0
+				},
+				"hash": "f75a7ff44cd652ae0501fb9005ecaaa8f4eb9abc",
+				"meta": {
+					"timestamp": 1498936889000
+				},
+				"changed": false
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab0",
+			"path": "/pset8/mashup/static/scripts.js",
+			"className": [
+				"tab0"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1499362941117
+				},
+				"filter": true,
+				"title": "scripts.js",
+				"tooltip": "/pset8/mashup/static/scripts.js",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab1",
+			"path": "/pset8/mashup/templates/index.html",
+			"className": [
+				"tab1"
+			],
+			"document": {
+				"filter": true,
+				"title": "index.html",
+				"tooltip": "/pset8/mashup/templates/index.html",
+				"ace": {
+					"folds": [],
+					"scrolltop": 186,
+					"scrollleft": 0,
+					"selection": {
+						"start": {
+							"row": 16,
+							"column": 34
+						},
+						"end": {
+							"row": 16,
+							"column": 35
+						},
+						"isBackwards": false
+					},
+					"options": {
+						"guessTabSize": true,
+						"useWrapMode": false,
+						"wrapToView": true
+					},
+					"firstLineState": {
+						"row": 31,
+						"state": "start",
+						"mode": "ace/mode/html"
+					}
+				},
+				"hash": "0092f6ce5daf9055ad7a8d86425b0bc07856910f",
+				"meta": {
+					"timestamp": 1499355383990
+				},
+				"changed": false
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab2",
+			"path": "/pset8/mashup/static/styles.css",
+			"className": [
+				"tab2"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1499354635130
+				},
+				"filter": true,
+				"title": "styles.css",
+				"tooltip": "/pset8/mashup/static/styles.css",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		},
+		{
+			"type": "tab",
+			"name": "tab8",
+			"path": "/pset8/pasteTheseB4Start.txt",
+			"className": [
+				"tab8"
+			],
+			"document": {
+				"changed": false,
+				"meta": {
+					"timestamp": 1499364213064
+				},
+				"filter": true,
+				"title": "pasteTheseB4Start.txt",
+				"tooltip": "/pset8/pasteTheseB4Start.txt",
+				"ace": {}
+			},
+			"editorType": "ace",
+			"active": false
+		}
+	],
+	"skin": "editor_tab",
+	"skinset": "default",
+	"meta": {
+		"accessList": [
+			"tab4",
+			"tab2",
+			"tab8",
+			"tab0",
+			"tab6",
+			"tab1"
+		]
+	},
+	"focus": "/pset8/mashup/application.py"
+}

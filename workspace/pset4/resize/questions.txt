@@ -1,0 +1,78 @@
+0.  TODO "How many different colors does each format support?"
+BMP supports 4 billion colors (32 bit per pixel), 
+GIF supports 256 colors (8 bit per pixel), 
+JPEG supports up to 16 million colors(24 bit per pixel), 
+PNG supports 16 million colors(24 bit per pixel).
+
+
+1.  TODO "Which of the formats supports animation?"
+GIF
+
+
+2.  TODO "What’s the difference between lossy and lossless compression?"
+Compressed Lossy images cannot fully be recovered 
+Lossless compression will allow recovery of all data
+
+
+3.  TODO "Which of these formats is lossy-compressed?"
+JPEG, GIF
+
+
+4.  TODO "What happens, technically speaking, when a file is deleted on a FAT file system?"
+The space becomes "free" but technically still contain the information prevsiously recorded. The pointer is removed. The computer no longer relates the data in the memory to the file name.
+The free space then becomes avaliable to be written over. When that happens, that memory is now containing the new file.
+
+
+5.  TODO "What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?"
+Write over those memory
+
+
+6.  TODO "What’s stdint.h?"
+It is one of the librarys that stores the C99 data types
+
+7.  TODO "What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?"
+To reserve exactly, 8, 32 and 16 unassigned bits. as for int32_t, it is also for when if you want 32 bits.
+This is because c's catagorisation is loose, some systems, define a 'long' as 32bit and other systems can define 'long' as 64bit
+
+
+8.  TODO "How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?"
+BYTE is 1 byte
+DWORD is 4 bytes
+LONG is 4 bytes
+WORD is 2 bytes
+
+
+9.  TODO "What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers.)""
+424d, or the letters, "BM"
+
+10. TODO "What’s the difference between bfSize and biSize?"
+bfSize == file size == 14bytes long
+biSize == header size == 40 bytes long (contains information on file structures)
+
+
+11. TODO "What does it mean if biHeight is negative?"
+The bit map will start from top left of the screen. 
+If it is positive, it will start at the bottom right of the sceen up(opposite)
+
+
+12. TODO "What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?"
+biBitCount
+
+13. TODO "Why might fopen return NULL in copy.c:37?"
+If the file we need to open does not exist, it will return null.
+
+14. TODO "Why is the third argument to fread always 1 in our code?"
+There is only 1 element to read.
+
+15. TODO "What value does copy.c:70 assign padding if bi.biWidth is 3?"
+padding == 3
+
+16. TODO "What does fseek do?"
+Change the offset of the file pointer. Which in the code, allows it to skip the padding and go to the next pixel. 
+
+17. TODO "What is SEEK_CUR?"
+change the location of the pointer fp from its current location (SEEK_SET changes it from the start, SEEK_END, from the end)
+
+18. TODO
+
+

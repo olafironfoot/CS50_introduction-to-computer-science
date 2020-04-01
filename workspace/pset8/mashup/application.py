@@ -1,0 +1,112 @@
+import os
+import re
+from flask import Flask, jsonify, render_template, request, url_for
+from flask_jsglue import JSGlue
+
+from cs50 import SQL
+from helpers import lookup
+
+# configure application
+app = Flask(__name__)
+JSGlue(app)
+
+# ensure responses aren't cached
+if app.config["DEBUG"]:
+    @app.after_request
+    def after_request(response):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        response.headers["Expires"] = 0
+        response.headers["Pragma"] = "no-cache"
+        return response
+
+# configure CS50 Library to use SQLite database
+db = SQL("sqlite:///mashup.db")
+
+@app.route("/")
+def index():
+    """Render map."""
+    if not os.environ.get("API_KEY"):
+        raise RuntimeError("API_KEY not set")
+    return render_template("index.html", key=os.environ.get("API_KEY"))
+
+@app.route("/articles")
+def articles():
+    """Look up articles for geo."""
+
+    # TODO  Z: allow user to search for article based on location
+    if request.method == "GET":
+        # retrieve the geo argument (https://cs50.stackexchange.com/questions/23377/pset8-mashup-getting-the-geo-value-into-articles?rq=1)
+        geography = str(request.args.get("geo"))     #Z: geo is sumitted to /articles as a GET parameter
+        #Z: check for missing argument
+        #Z: runtime error
+        result = lookup(geography)
+        
+        return jsonify(result)  #Z: using geo, we output this JSON array of objects
+
+@app.route("/search")
+def search():
+    """Search for places that match query."""
+
+    # TODO  Z: allow user to search for location
+    #Z: q is submitted to /search as a GET parammeter
+    if request.method == "GET":
+        #E: think this one is wrong-> location = str(request.args.get("q"))
+        #E: So the args.get() is method get() for MultiDict, who's prototype as to the right->: get(key, default=None, type=None), website reference here:(https://stackoverflow.com/questions/34671217/in-flask-what-is-request-args-and-how-is-it-used)
+        q = request.args.get("q") + "%"         #E: this line seem to be just a more advance version of "request.form.get("password")" used in pset7/finance/application.py
+        
+        #E: this searches for the exact postal code only, db.execute("SELECT * FROM places WHERE postal_code = :q", q=request.args.get("q"))
+        postalResults=db.execute("SELECT * FROM places WHERE postal_code LIKE :q", q=q)     
+        #E: TODO. currently only search for postal.
+
+    #Z: output JSON array of objects
+        #Z: each obect is a row from places(sql table)
+    #Z: value of q might be a city, state, or postal code
+    #Z: jsonify
+    
+    return jsonify(postalResults)   #E: converts multiple arguments into an array or multiple keyword arguments into a dict.
+
+@app.route("/update")
+def update():
+    """Find up to 10 places within view."""
+
+    # ensure parameters are present
+    if not request.args.get("sw"):
+        raise RuntimeError("missing sw")
+    if not request.args.get("ne"):
+        raise RuntimeError("missing ne")
+
+    # ensure parameters are in lat,lng format
+    if not re.search("^-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?$", request.args.get("sw")):
+        raise RuntimeError("invalid sw")
+    if not re.search("^-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?$", request.args.get("ne")):
+        raise RuntimeError("invalid ne")
+
+    # explode southwest corner into two variables
+    (sw_lat, sw_lng) = [float(s) for s in request.args.get("sw").split(",")]
+
+    # explode northeast corner into two variables
+    (ne_lat, ne_lng) = [float(s) for s in request.args.get("ne").split(",")]
+
+    # find 10 cities within view, pseudorandomly chosen if more within view
+    if (sw_lng <= ne_lng):
+
+        # doesn't cross the antimeridian
+        rows = db.execute("""SELECT * FROM places
+            WHERE :sw_lat <= latitude AND latitude <= :ne_lat AND (:sw_lng <= longitude AND longitude <= :ne_lng)
+            GROUP BY country_code, place_name, admin_code1
+            ORDER BY RANDOM()
+            LIMIT 10""",
+            sw_lat=sw_lat, ne_lat=ne_lat, sw_lng=sw_lng, ne_lng=ne_lng)
+
+    else:
+
+        # crosses the antimeridian
+        rows = db.execute("""SELECT * FROM places
+            WHERE :sw_lat <= latitude AND latitude <= :ne_lat AND (:sw_lng <= longitude OR longitude <= :ne_lng)
+            GROUP BY country_code, place_name, admin_code1
+            ORDER BY RANDOM()
+            LIMIT 10""",
+            sw_lat=sw_lat, ne_lat=ne_lat, sw_lng=sw_lng, ne_lng=ne_lng)
+
+    # output places as JSON
+    return jsonify(rows)

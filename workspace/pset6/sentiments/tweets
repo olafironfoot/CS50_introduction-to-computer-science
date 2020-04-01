@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+
+#Summary of mistake in this pset6/sentiment/tweets
+#ISSUE 1: did not use "helper.getusertimeline" to access getusertimeline.
+    #used "from helpers import get_user_timeline" instead, and it does not work unless a class is defined
+    #actually, tested it, in python, we can even import single functions from a .py file, that is crazy awsome!
+    #lesson learned- power of python is that it can take any function from any file to use in code. so sick.
+    
+#ISSUE 2: did not figure out the output of get_user_timeline function, if it returns list, or text
+    #found out after using print function to print list out, that I understood, 
+    #(continued)get_user_timeline returns strings of entire tweets, and catagorise entire tweet as item[1], [2] in list
+
+#ISSUE 3: did not use for-loop function to, "CHECK score" & "PRINT tweets"
+    #lesson learned, after understanding Issue 2, then can we "CHECK" and "PRINT" per tweet. 
+
+# TODO
+import nltk
+#import helpers
+from helpers import get_user_timeline
+from analyzer import Analyzer
+import sys
+import os
+#from termcolor import colored
+import termcolor
+
+#ZYMAYLA'S HINTS
+
+#ensure proper usage
+    #argv
+def main():
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./smile @username")
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+#get tweets
+    screen_name = sys.argv[1].lstrip("@")
+    ##get_user_timeline (in helpers.py)
+    if get_user_timeline(screen_name, 50) is False:
+        #Check if successful
+        #if private account or does not exist(unsuccessful)
+        #error message if unsuccessful(sys.exit)
+        sys.exit("account either private or does not exist")
+    
+    #tokenize the tweet (like we did in analyzer.py for "smile")
+    #tokenizers are part of natural language toolkit        
+    #use a TweetTokenizer to split into a list of words
+    tweets = get_user_timeline(screen_name, 50)
+    #print("{}".format(tweets))
+    
+    #analyze tweets
+    #initialize Analyzer
+    analyzer = Analyzer(positives, negatives)
+    
+    for i in tweets:
+        # analyze word
+        
+        score = analyzer.analyze(i)
+        #instantiate Analyzer, iterate over every token scoring them pos,neg,neutral (this will indicate if the tweet is posistive/negative/neutral)
+    
+        #score = analyzer.TweetAnalyzer(tokens)
+        #tweet = analyzer.TweetAnalyzer
+        if score > 0.0:
+            #print score
+            print(termcolor.colored("{} {}".format(score, i), "green"))
+            #print tweet
+            #print("{}".format(tweet))
+            
+        elif score < 0.0:
+            print(termcolor.colored("{} {}".format(score, i), "red"))
+            #print tweet
+            #print("{}".format(tweet))
+            
+        else:
+            print(termcolor.colored("{} {}".format(score, i), "yellow"))
+            #print tweet
+            #print("{}".format(tweet))
+
+if __name__ == "__main__":
+    main()
+    
+    
+
+
+#(inorder to get proper usage, see "smile")
+
+
+
+
+
+#End of ZYMAYLA'S HINTS
+
+#----------------
+
+#start of "smile"
+    # import os
+    # import sys
+    
+    # from analyzer import Analyzer
+    # from termcolor import colored
+    
+    # def main():
+    
+    #     # ensure proper usage
+    #     if len(sys.argv) != 2:
+    #         sys.exit("Usage: ./smile word")
+    
+    #     # absolute paths to lists
+    #     positives = os.path.join(sys.path[0], "positive-words.txt")
+    #     negatives = os.path.join(sys.path[0], "negative-words.txt")
+    
+    #     # instantiate analyzer
+    #     analyzer = Analyzer(positives, negatives)
+    
+    #     # analyze word
+    #     score = analyzer.analyze(sys.argv[1])
+    #     if score > 0.0:
+    #         print(colored(":)", "green"))
+    #     elif score < 0.0:
+    #         print(colored(":(", "red"))
+    #     else:
+    #         print(colored(":|", "yellow"))
+    
+    # if __name__ == "__main__":
+    #     main()
+#end of "smile"

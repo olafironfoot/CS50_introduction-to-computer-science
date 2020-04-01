@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    shares
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('shares') }}" method="post">
+<ul id="shares">
+    {% for share in shares %}    <!--alternatively can be row in rows-->
+        <li> <a href="{{ shares.id }}"> {{ shares.total }}</a></li> 
+    {% endfor %}
+</ul>
+</form>
+    <h1>My Webpage</h1>
+    {{ a_variable }}
+
+{% endblock %}
+
+<!-- #Week9 Lecture video, 01:20:24 also, see http://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template-->
